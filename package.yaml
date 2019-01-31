@@ -27,16 +27,10 @@ library:
   source-dirs: src
   default-extensions:
     - DataKinds
-    - ExistentialQuantification
     - GADTs
     - FlexibleContexts
-    - MonoLocalBinds
-    - RankNTypes
     - RecordWildCards
-    - TemplateHaskell
-    - TypeFamilies
     - TypeOperators
-    - ScopedTypeVariables
 
 executables:
   domain-free-exe:
@@ -61,13 +55,6 @@ tests:
     - domain-free
     default-extensions:
     - DataKinds
-    - ExistentialQuantification
     - GADTs
     - FlexibleContexts
-    - MonoLocalBinds
-    - RankNTypes
-    - RecordWildCards
-    - TemplateHaskell
-    - TypeFamilies
     - TypeOperators
-    - ScopedTypeVariables
