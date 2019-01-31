@@ -7,8 +7,8 @@ import Interfaces
 
 runTestEnv :: Lifted IO r => [String] -> Eff (Env ': r) a -> Eff r a
 runTestEnv _ (Val x) = pure x
-runTestEnv testArgs (E u q) =
-  case decomp q of
-    Right GetArgs -> pure testArgs >>= \args -> runTestEnv testArgs (qApp u args)
-    Right (PrintString s) -> lift (putStrLn s) >> runTestEnv testArgs (qApp u ())
-    Left u0 -> E ident u0 >>= runTestEnv testArgs . qApp u
+runTestEnv testArgs (E arrows union) =
+  case decomp union of
+    Right GetArgs -> pure testArgs >>= \args -> runTestEnv testArgs (qApp arrows args)
+    Right (PrintString s) -> lift (putStrLn s) >> runTestEnv testArgs (qApp arrows ())
+    Left u0 -> E ident u0 >>= runTestEnv testArgs . qApp arrows
