@@ -30,6 +30,7 @@ library:
     - GADTs
     - FlexibleContexts
     - RecordWildCards
+    - TypeFamilies
     - TypeOperators
 
 executables:
@@ -57,4 +58,5 @@ tests:
     - DataKinds
     - GADTs
     - FlexibleContexts
+    - TypeFamilies
     - TypeOperators

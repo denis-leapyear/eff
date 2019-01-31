@@ -16,14 +16,14 @@ printString :: Member Env r => String -> Eff r ()
 printString = send . PrintString
 
 
-newtype FileHandle = FileHandle { fileHandle :: SystemIO.Handle}
+data family FileHandle h
 
 data FileReader a where
-  OpenFile :: String -> FileReader FileHandle
-  ReadFileContent :: FileHandle -> FileReader String
+  OpenFile :: String -> FileReader (FileHandle h)
+  ReadFileContent :: (FileHandle b)-> FileReader String
 
-openFile :: Member FileReader r => String -> Eff r FileHandle
+openFile :: Member FileReader r => String -> Eff r (FileHandle h)
 openFile = send . OpenFile
 
-readFileContent :: Member FileReader r => FileHandle -> Eff r String
+readFileContent :: Member FileReader r => (FileHandle h) -> Eff r String
 readFileContent = send . ReadFileContent
