@@ -6,4 +6,8 @@ import Lib
 import Implementations
 
 main :: IO ()
-main = (runLift . runFileReader . runEnv) process
+main =
+  ( runLift
+  . runFileReader
+  . runEnv
+  ) process

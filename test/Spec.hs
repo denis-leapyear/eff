@@ -6,4 +6,8 @@ import Implementations
 import TestImplementations
 
 main :: IO ()
-main = (runLift . runFileReader . runTestEnv ["file.txt"]) process
+main =
+  ( runLift
+  . runFileReader
+  . runTestEnv ["file.txt"]
+  ) process

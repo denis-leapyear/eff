@@ -34,6 +34,7 @@ library:
     - RankNTypes
     - RecordWildCards
     - TemplateHaskell
+    - TypeFamilies
     - TypeOperators
     - ScopedTypeVariables
 
@@ -67,5 +68,6 @@ tests:
     - RankNTypes
     - RecordWildCards
     - TemplateHaskell
+    - TypeFamilies
     - TypeOperators
     - ScopedTypeVariables

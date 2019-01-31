@@ -16,7 +16,7 @@ printString :: Member Env r => String -> Eff r ()
 printString = send . PrintString
 
 
-data FileHandle = FileHandle { fileHandle :: SystemIO.Handle}
+newtype FileHandle = FileHandle { fileHandle :: SystemIO.Handle}
 
 data FileReader a where
   OpenFile :: String -> FileReader FileHandle

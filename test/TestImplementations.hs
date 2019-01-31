@@ -5,8 +5,6 @@ import Control.Eff.Extend
 
 import Interfaces
 
-data Hole = Hole
-
 runTestEnv :: Lifted IO r => [String] -> Eff (Env ': r) a -> Eff r a
 runTestEnv _ (Val x) = pure x
 runTestEnv testArgs (E u q) =
