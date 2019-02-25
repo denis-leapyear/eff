@@ -8,6 +8,6 @@ import TestImplementations
 main :: IO ()
 main =
   ( runLift
-  . runFileReader
+  . runTestFileReader "aaa"
   . runTestEnv ["file.txt"]
-  ) process
+  ) (process @String)

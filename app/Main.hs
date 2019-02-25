@@ -1,6 +1,7 @@
 module Main where
 
 import Control.Eff
+import System.IO as SystemIO
 
 import Lib
 import Implementations
@@ -10,4 +11,4 @@ main =
   ( runLift
   . runFileReader
   . runEnv
-  ) process
+  ) (process @SystemIO.Handle)

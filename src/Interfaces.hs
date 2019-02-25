@@ -16,14 +16,12 @@ printString :: Member Env r => String -> Eff r ()
 printString = send . PrintString
 
 
-data family FileHandle h
+data FileReader readhandle a where
+  OpenFile :: String -> FileReader readhandle readhandle
+  ReadFileContent :: readhandle -> FileReader readhandle String
 
-data FileReader a where
-  OpenFile :: String -> FileReader (FileHandle h)
-  ReadFileContent :: (FileHandle b)-> FileReader String
-
-openFile :: Member FileReader r => String -> Eff r (FileHandle h)
+openFile :: Member (FileReader readhandle) r => String -> Eff r readhandle
 openFile = send . OpenFile
 
-readFileContent :: Member FileReader r => (FileHandle h) -> Eff r String
+readFileContent :: Member (FileReader readhandle) r => readhandle -> Eff r String
 readFileContent = send . ReadFileContent

@@ -29,7 +29,12 @@ library:
     - DataKinds
     - GADTs
     - FlexibleContexts
+    - FlexibleInstances
+    - MultiParamTypeClasses
+    - RankNTypes
     - RecordWildCards
+    - ScopedTypeVariables
+    - TypeApplications
     - TypeFamilies
     - TypeOperators
 
@@ -43,6 +48,19 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - domain-free
+    default-extensions:
+    - DataKinds
+    - GADTs
+    - FlexibleContexts
+    - FlexibleInstances
+    - MultiParamTypeClasses
+    - RankNTypes
+    - RecordWildCards
+    - ScopedTypeVariables
+    - TypeApplications
+    - TypeFamilies
+    - TypeOperators
+
 
 tests:
   domain-free-test:
@@ -58,5 +76,10 @@ tests:
     - DataKinds
     - GADTs
     - FlexibleContexts
+    - FlexibleInstances
+    - MultiParamTypeClasses
+    - RankNTypes
+    - ScopedTypeVariables
+    - TypeApplications
     - TypeFamilies
     - TypeOperators

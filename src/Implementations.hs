@@ -16,18 +16,16 @@ runEnv (E arrows union) =
     Right (PrintString s) -> lift (putStrLn s) >> runEnv (qApp arrows ())
     Left u0 -> E ident u0 >>= runEnv . qApp arrows
 
-data instance FileHandle h = SystemFileHandle SystemIO.Handle
-
-runFileReader :: Lifted IO r => Eff (FileReader ': r) a -> Eff r a
+runFileReader
+  :: (Lifted IO r)
+  => Eff (FileReader SystemIO.Handle ': r) a -> Eff r a
 runFileReader (Val x) = pure x
 runFileReader (E arrows union) =
   case decomp union of
     Right (OpenFile path) ->
-      lift (do
-        systemHandle <- SystemIO.openFile path ReadMode
-        pure $ SystemFileHandle systemHandle
-      ) >>= \args -> runFileReader (qApp arrows args)
-    Right (ReadFileContent (SystemFileHandle systemHandle)) ->
+      lift (SystemIO.openFile path ReadMode) >>=
+        \args -> runFileReader (qApp arrows args)
+    Right (ReadFileContent systemHandle) ->
       lift (SystemIO.hGetContents systemHandle) >>=
         \args -> runFileReader (qApp arrows args)
     Left u0 -> E ident u0 >>= runFileReader . qApp arrows
